@@ -1,4 +1,0 @@
-<?
-$smarty->display('footer.tpl');
-
-?>

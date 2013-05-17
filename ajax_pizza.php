@@ -2,8 +2,6 @@
 
 include("./header.php");
 
-
-
 if(!$_POST['action']){
 	header ("Location: index.html"); 
 }
@@ -43,8 +41,8 @@ else{
 			break;
 		case "cena":
 			echo $_SESSION['koszyk_all'];
-			
 			break;
+
 	}
 }
 

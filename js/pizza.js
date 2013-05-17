@@ -1,10 +1,9 @@
 ﻿$(document).ready(function(){
-	
 var messageList = $(".lista_koszyk > ol");
 var loading = $("#loading");
 	function updateKoszykCena(){
 		$.ajax({
-			type: "POST", url: "../ajax_pizza.php", data: "action=cena",
+			type: "POST", url: "http://lacosta.watch4free.pl/ajax_pizza.php", data: "action=cena",
 			complete: function(data){
 	
 				if(data.responseText == "") // mamy cos w koszyku
@@ -24,10 +23,9 @@ var loading = $("#loading");
 		loading.fadeIn("slow");
 
 		$.ajax({
-			type: "POST", url: "../ajax_pizza.php", data: "action=update",
+			type: "POST", url: "http://lacosta.watch4free.pl/ajax_pizza.php", data: "action=update",
 			complete: function(data){
 				loading.fadeOut("slow");
-	
 				if(data.responseText != "") // mamy cos w koszyku
 				{
 					$("#koszyk").fadeOut("slow");
@@ -62,7 +60,7 @@ jQuery(window).load(function() {
 					
 					$.ajax({
 						type: "POST",
-						url: "../ajax_pizza.php",
+						url: "http://lacosta.watch4free.pl/ajax_pizza.php",
 						data: "action=insert&pizza="+ ID, 
 						cache: false,
 						complete: function(data){
@@ -78,7 +76,7 @@ jQuery(window).load(function() {
 				
 					$.ajax({
 						type: "POST",
-						url: "../ajax_pizza.php",
+						url: "http://lacosta.watch4free.pl/ajax_pizza.php",
 						data: "action=wyczysc", 
 						cache: false,
 						complete: function(data){
@@ -91,6 +89,38 @@ jQuery(window).load(function() {
 });
 
 
+function popup(){
+    var popID = 'popup_name'; 
+    var popURL = '#?w=500';
+ 
 
+    var query= popURL.split('?');
+    var dim= query[1].split('&');
+    var popWidth = dim[0].split('=')[1]; 
+ 
+    $('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a class="close" href="#"><img class="btn_close" title="Zamknij okno" src="http://lacosta.watch4free.pl/images/close_pop.png" alt="Zamknij" /></a>');
+ 
 
+    var popMargTop = ($('#' + popID).height() + 80) / 2;
+    var popMargLeft = ($('#' + popID).width() + 80) / 2;
+ 
+    //Apply Margin to Popup
+    $('#' + popID).css({
+        'margin-top' : -popMargTop,
+        'margin-left' : -popMargLeft
+    });
 
+    $('body').append('<div id="fade"></div>'); 
+    $('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); 
+ 
+    return false;
+};
+ 
+
+$('a.close, #fade').live('click', function() { 
+    $('#fade , .popup_block').fadeOut(function() {
+        $('#fade, a.close').remove(); 
+    });
+    return false;
+
+});

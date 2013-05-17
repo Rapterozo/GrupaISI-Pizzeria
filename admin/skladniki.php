@@ -1,4 +1,5 @@
 <?
+echo dirname(__FILE__); ;
 if(isset($_GET['id']))
 {
 	$id = intval($_GET['id']);

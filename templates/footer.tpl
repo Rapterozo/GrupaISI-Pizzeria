@@ -36,7 +36,7 @@
                                     <textarea  name="dane"  tabindex="11"/>{$profile['dane']}</textarea>
                             </label>
                             <label>
-                            	<div class="dane">Kwota do zapłaty</div>
+                            	<div class="dane">Kwota do zapłtay</div>
                                 <input type="text" readonly="readonly" name="kwota" value="0 zł" id="kwota" />
                             </label>
                             <label>

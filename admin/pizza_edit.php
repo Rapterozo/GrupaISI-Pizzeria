@@ -1,24 +1,8 @@
-<?
-if(isset($_POST['send']))
-{
-
-	$id = intval($_POST['id']);
-	if($_POST['wybor'] == 'del')
-	{
-		$wynik = dbquery("DELETE FROM pizza WHERE id = '".$id."';");
-			if ($wynik) {
-			$box = box('Pizza został skasowana!',info);
-			}
-	}else if($_POST['wybor'] == 'edit')
-	{
-		
-		header('location: pizza_edit/id-'.$id);	
-	}
-	$smarty->assign("box", $box);	
-}
+﻿<?
 if(isset($_POST['send_pizza'])) 
 {
 
+	$id = intval($_POST['id']);
 	$nazwa = mysql_real_escape_string(strip_tags(trim($_POST["nazwa"])));
 	$s = mysql_real_escape_string(strip_tags(trim($_POST["s"])));
 	$m = mysql_real_escape_string(strip_tags(trim($_POST["m"])));
@@ -35,9 +19,10 @@ if(isset($_POST['send_pizza']))
 		{
 			if(count($skladniki2) != 0)
 			{
-				$wynik = dbquery("INSERT INTO pizza VALUES ('','".$nazwa."','".$zap_skladniki."','".$s."','".$m."','".$l."')");
+				
+				$wynik = dbquery("UPDATE `pizza` SET `nazwa`='".$nazwa."',`skladniki`='".$zap_skladniki."',`s`='".$s."',`m`='".$m."',`l`='".$l."' WHERE id = '".$id."'");
 				if ($wynik) {
-					$box = box('Pizza została dodana!',info);
+					header('location: ../pizza');	
 				}
 			}else
 				$box = box('Podaj chociaż 1 skłądnik pizzy',info);
@@ -49,16 +34,20 @@ if(isset($_POST['send_pizza']))
 	$smarty->assign("box", $box);
 	
 }
- 
-$res = dbquery("SELECT * FROM pizza;");
-while($row = mysql_fetch_array($res))
+
+	$id = intval($_GET['id']);
+	$res = dbquery("SELECT * FROM pizza WHERE id = '".$id ."';");
+	$row = mysql_fetch_array($res);
 	$pizza[] = $row;
-
-$res = dbquery("SELECT * FROM skladniki;");
-while($row = mysql_fetch_array($res))
-	$skladniki[] = $row;
-
-
-$smarty->assign("pizza", $pizza);	
-$smarty->assign("skladniki", $skladniki);
+	
+	$smarty->assign("pizza", $pizza[0]);	
+	
+	
+	
+	$res = dbquery("SELECT * FROM skladniki;");
+	while($row = mysql_fetch_array($res))
+		$skladniki[] = $row;
+	
+		
+	$smarty->assign("skladniki", $skladniki);
 ?>

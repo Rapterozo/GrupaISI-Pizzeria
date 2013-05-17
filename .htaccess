@@ -3,8 +3,11 @@ RewriteBase /
 Options +FollowSymLinks
 Options All -Indexes
 
-RewriteRule ^admin/(.*?)/id-([0-9])$ admin.php?page=$1&id=$2
+
+RewriteRule ^admin/(.*?)/id-([0-9]+)$ admin.php?page=$1&id=$2
 RewriteRule ^admin/(.*?)$ admin.php?page=$1
+
+RewriteRule ^page/(.*?)$ page.php?page=$1
 
 RewriteRule ^(.*)\.html $1\.php 
 

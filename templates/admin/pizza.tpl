@@ -3,7 +3,7 @@
         	<div id="nav">Panel Administratora</div>
             <div id="tabela">
                 <div id="page">
-                	<h1>Dodaj składniki</h1>
+                	<h1>Dodaj Pizze</h1>
                     {$box}
 					<form action="" method="post" class="formularz">
                         <label>
@@ -39,11 +39,22 @@
                     <h1>Lista Pizz:</h1>
                     <ul class="pizza">
                     	{section name=i loop=$pizza}
-                        <li><a href="/admin/pizza/id-{$pizza[i].id}">{$pizza[i].nazwa}</a><br /><span style="font-size:10px;">{$pizza[i].skladniki}</span></li>
+                        <li id="lista_pizza">
+                            <div style="float:left; width:400px;">{$pizza[i].nazwa}<br /><span style="font-size:10px; color:#666;">{$pizza[i].skladniki}</span></div>
+                            <div style="float:left; width:200px;">
+                            <form action="" method="post">
+                            <select name="wybor">
+                            	<option value="edit">Edytuj</option>
+                                <option value="del">Skasuj</option>
+                            </select>
+                            <input type="hidden" name="id" value="{$pizza[i].id}" />
+                            <input  name="send" class="submit" type="submit" value="Wyślij"/>
+                            </form>
+                            </div>
+						</li>
                         {/section}
                     </ul>
-                    <div style="clear:both"></div><br /><br />
-                    By skasować pizze, naciśnij na nazwe.
+                    <div style="clear:both"></div><br />
             	</div>
 			</div>
         </div>

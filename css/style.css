@@ -80,3 +80,49 @@ hr{color:#f16007; background-color: #f16007; height:1px;}
 	box-shadow:inset 3px 3px 5px #e9e9e9;
 }
 .name{font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#f16007; font-weight:bold; text-decoration:underline; padding-left:20px;}
+#fade { /*--Przejrzyste warstwy tła--*/
+	display: none; /*--domyślnie ukryte--*/
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .80;
+	z-index: 9999;
+}
+ 
+.popup_block{
+	display: none; /*--domyślnie ukryte--*/
+	background: #fff;
+	background-repeat:no-repeat;
+	background-position:right;
+	padding: 20px;
+	border: 20px solid #ddd;
+	float: left;
+	font-size: 1.2em;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	/*--CSS3 Cień okna--*/
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+	/*--CSS3 Zaokrąglone narożniki--*/
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+ 
+.popup_block p{
+width:80%;
+}
+ 
+img.btn_close {
+	float: right;
+	margin: -55px -55px 0 0;
+}
+/*--Kod pozwalający na prawidłowe pozycjonowanie w  IE6--*/
+*html #fade {
+	position: absolute;
+}
+*html .popup_block {
+	position: absolute;
+}
